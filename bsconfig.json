@@ -21,7 +21,7 @@
     }
   ],
   "suffix": ".js",
-  "namespace": "url",
+  "namespace": true,
   "bs-dependencies": ["reason-react", "bs-webapi"],
   "refmt": 3,
   "warnings": {
