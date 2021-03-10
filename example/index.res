@@ -15,9 +15,9 @@ module WindowListeners = {
 
     <div>
       <div> {"Window events"->React.string} </div>
-      <div> {`Window clicks ${windowClicks->Int.toString}`->React.string} </div>
+      <div> {`Window clicks ${windowClicks->Belt.Int.toString}`->React.string} </div>
       <div>
-        {`Mouse position x:${mousePositionX->Int.toString}, y:${mousePositionY->Int.toString}`->React.string}
+        {`Mouse position x:${mousePositionX->Belt.Int.toString}, y:${mousePositionY->Belt.Int.toString}`->React.string}
       </div>
     </div>
   }
@@ -31,7 +31,7 @@ module OpenFolder = {
     let {files, openFolder, openFolderProps} = OpenFolderHook.use()
 
     React.useEffect1(() => {
-      if files->Option.isSome {
+      if files->Belt.Option.isSome {
         Js.log("Files changed")
       }
 
@@ -88,7 +88,7 @@ module Device = {
 
     <div>
       <div>
-        {`Current device (based on screen size): ${device->Option.mapWithDefault(
+        {`Current device (based on screen size): ${device->Belt.Option.mapWithDefault(
             "Unknown",
             Resolver.tToJs,
           )}`->React.string}
@@ -108,10 +108,10 @@ module Window = {
       | None => React.null
       | Some({innerWidth, innerHeight, outerWidth, outerHeight, scrollX, scrollY}) => <>
           <div>
-            {`Window inner size width:${innerWidth->Int.toString}, height:${innerHeight->Int.toString}`->React.string}
+            {`Window inner size width:${innerWidth->Belt.Int.toString}, height:${innerHeight->Belt.Int.toString}`->React.string}
           </div>
           <div>
-            {`Window outer size width:${outerWidth->Int.toString}, height:${outerHeight->Int.toString}`->React.string}
+            {`Window outer size width:${outerWidth->Belt.Int.toString}, height:${outerHeight->Belt.Int.toString}`->React.string}
           </div>
           <div
             style={ReactDOM.Style.make(
@@ -122,7 +122,7 @@ module Window = {
               ~justifyContent="center",
               (),
             )}>
-            {`Window scroll x:${scrollX->Float.toString}, y:${scrollY->Float.toString}`->React.string}
+            {`Window scroll x:${scrollX->Belt.Float.toString}, y:${scrollY->Belt.Float.toString}`->React.string}
           </div>
         </>
       }}
@@ -145,5 +145,5 @@ module App = {
 
 ReactDOM.render(
   <App />,
-  Webapi.Dom.document->Webapi.Dom.Document.getElementById("root", _)->Option.getExn,
+  Webapi.Dom.document->Webapi.Dom.Document.getElementById("root", _)->Belt.Option.getExn,
 )

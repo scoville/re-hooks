@@ -31,7 +31,7 @@ let device = DeviceHook.use(({WindowHook.innerWidth: innerWidth}) =>
 let use = deviceResolver => {
   let window = WindowHook.use()
 
-  let (device, setDevice) = React.useState(() => window->Option.map(deviceResolver))
+  let (device, setDevice) = React.useState(() => window->Belt.Option.map(deviceResolver))
 
   React.useEffect2(() => {
     switch window {
@@ -43,8 +43,8 @@ let use = deviceResolver => {
 
     None
   }, (
-    window->Option.map(window => window.innerHeight),
-    window->Option.map(window => window.innerWidth),
+    window->Belt.Option.map(window => window.innerHeight),
+    window->Belt.Option.map(window => window.innerWidth),
   ))
 
   device
