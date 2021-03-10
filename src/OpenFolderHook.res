@@ -74,7 +74,7 @@ let use = () => {
   let openFolder = () => {
     open Webapi.Dom
 
-    let input = ref.current->Js.Nullable.toOption->Option.flatMap(Element.asHtmlElement)
+    let input = ref.current->Js.Nullable.toOption->Belt.Option.flatMap(Element.asHtmlElement)
 
     switch input {
     | Some(input) when !(input->HtmlElement.hasAttribute("disabled", _)) => input->HtmlElement.click
