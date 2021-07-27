@@ -3,18 +3,23 @@ module ClickOutside = {
   let make = () => {
     let dataListRef = React.useRef(Js.Nullable.null)
 
-    let (dropdownIsOpen, setDropdownIsOpen) = React.useState(_ => false)
+    let (dropdownIsOpen, setDropdownIsOpen) = React.useState(() => false)
 
     let (text, setText) = React.useState(_ => "")
-
-    ClickOutsideHook.use(~refs=[dataListRef], () => setDropdownIsOpen(_ => false))
 
     <div style={ReactDOMStyle.make(~width="200px", ())} ref={ReactDOM.Ref.domRef(dataListRef)}>
       {"datalist"->React.string}
       <input readOnly=true onFocus={_ => setDropdownIsOpen(_ => true)} value=text />
       {!dropdownIsOpen
         ? React.null
-        : <div style={ReactDOM.Style.make(~border="1px solid black", ~width="200px", ())}>
+        : <div
+            style={ReactDOM.Style.make(
+              ~border="1px solid black",
+              ~width="200px",
+              ~position="absolute",
+              ~backgroundColor="white",
+              (),
+            )}>
             {["apple", "banana", "orange"]
             ->Js.Array2.map(fruit =>
               <div key={fruit} onClick={_ => setText(_ => fruit)}> {fruit->React.string} </div>
