@@ -1,3 +1,35 @@
+module ClickOutside = {
+  @react.component
+  let make = () => {
+    let dataListRef = React.useRef(Js.Nullable.null)
+
+    let (dropdownIsOpen, setDropdownIsOpen) = React.useState(() => false)
+
+    let (text, setText) = React.useState(_ => "")
+
+    <div style={ReactDOMStyle.make(~width="200px", ())} ref={ReactDOM.Ref.domRef(dataListRef)}>
+      {"datalist"->React.string}
+      <input readOnly=true onFocus={_ => setDropdownIsOpen(_ => true)} value=text />
+      {!dropdownIsOpen
+        ? React.null
+        : <div
+            style={ReactDOM.Style.make(
+              ~border="1px solid black",
+              ~width="200px",
+              ~position="absolute",
+              ~backgroundColor="white",
+              (),
+            )}>
+            {["apple", "banana", "orange"]
+            ->Js.Array2.map(fruit =>
+              <div key={fruit} onClick={_ => setText(_ => fruit)}> {fruit->React.string} </div>
+            )
+            ->React.array}
+          </div>}
+    </div>
+  }
+}
+
 module WindowListeners = {
   @react.component
   let make = () => {
@@ -135,6 +167,7 @@ module App = {
   let make = () => {
     <div>
       <div> {"ReHooks"->React.string} </div>
+      <div> <ClickOutside /> </div>
       <div> <WindowListeners /> </div>
       <div> <OpenFolder /> </div>
       <div> <Device /> </div>

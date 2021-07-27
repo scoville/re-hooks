@@ -59,6 +59,8 @@ module type Listener = {
 
   type return
 
+  let use: (t => return) => unit
+
   let use0: (t => return) => unit
 
   let use1: (t => return, array<'a>) => unit
@@ -86,6 +88,8 @@ let make = (
 
         Some(() => Webapi.Dom.window->removeEventListener(listener, _))
       }
+
+      let use = listener => React.useEffect(() => makeListener(listener))
 
       let use0 = listener => React.useEffect0(() => makeListener(listener))
 
