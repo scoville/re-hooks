@@ -7,8 +7,10 @@ module ClickOutside = {
 
     let (text, setText) = React.useState(_ => "")
 
+    ClickOutsideHook.use0(~refs=[dataListRef], () => setDropdownIsOpen(_ => false))
+
     <div style={ReactDOMStyle.make(~width="200px", ())} ref={ReactDOM.Ref.domRef(dataListRef)}>
-      {"datalist"->React.string}
+      {"Click in the input and outside"->React.string}
       <input readOnly=true onFocus={_ => setDropdownIsOpen(_ => true)} value=text />
       {!dropdownIsOpen
         ? React.null
@@ -99,20 +101,22 @@ module OpenFolder = {
 }
 
 module Device = {
-  module Resolver = {
-    @deriving(jsConverter)
+  module DeviceHookResolver = {
     type t = [#unsupported | #mobile | #tablet | #desktop]
 
-    let resolve = ({WindowHook.innerWidth: innerWidth}) =>
+    let resolve = ({WindowHook.innerWidth: innerWidth}): t =>
       switch () {
-      | _ when innerWidth < 375 => #unsupported
-      | _ when innerWidth < 768 => #mobile
-      | _ when innerWidth < 1024 => #tablet
+      | _ if innerWidth < 375 => #unsupported
+      | _ if innerWidth < 768 => #mobile
+      | _ if innerWidth < 1024 => #tablet
       | _ => #desktop
       }
   }
 
-  module DeviceHook = DeviceHook.Make(Resolver)
+  module DeviceHook = DeviceHook.Make(DeviceHookResolver)
+
+  // Or, using the `make` function:
+  // module DeviceHook = unpack(DeviceHook.make(~resolve=DeviceHookResolver.resolve))
 
   @react.component
   let make = () => {
@@ -122,7 +126,7 @@ module Device = {
       <div>
         {`Current device (based on screen size): ${device->Belt.Option.mapWithDefault(
             "Unknown",
-            Resolver.tToJs,
+            device => (device :> string),
           )}`->React.string}
       </div>
     </div>

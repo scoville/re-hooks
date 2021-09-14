@@ -1,8 +1,9 @@
-@@ocaml.doc("Contains several window listeners hooks.
-The API is used is always the same, with all the module exposing some `use0`, `use1`, etc...
-functions that will take a listener. The name of the hook is based on the one from ReScript React.
+@@ocaml.doc("A collection of window listeners hooks.
 
-_Events are disposed when component are unmounted._
+The API is the same for all the hooks in this module with the `use`, `use0`, `use1`, etc... hook
+functions that will take a listener. The name of the hook is similar to the [`React.useEffectX` hooks](https://rescript-lang.org/docs/react/latest/hooks-effect).
+
+_All the event listeners are disposed when the component is unmounted._
 
 ```
 @react.component
@@ -14,10 +15,9 @@ let make = () => {
 ```
 
 Notice that if in the above example the hook expects the listener to returns `unit`, some hooks will expect a
-different type, like the `BeforeUnload` module for instance.
+different return type, like the `BeforeUnload` hook for instance.
 
-
-To add your own window listener is also possible, and should be trivial:
+It's possible to add your own window listener:
 
 ```
 module MyEvent = {
@@ -32,7 +32,7 @@ module MyEvent = {
   external removeEventListener: (Webapi.Dom.Window.t, @as(\"my-event\") _, string => unit) => unit =
     \"removeEventListener\"
 
-  // Let's now include all the hooks!
+  // Let's include all the hooks in the `MyEvent` module
   include unpack(
     make(
       ~addEventListener=(listener, window) => window->addEventListener(listener),
