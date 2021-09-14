@@ -105,9 +105,9 @@ module Device = {
 
     let resolve = ({WindowHook.innerWidth: innerWidth}) =>
       switch () {
-      | _ when innerWidth < 375 => #unsupported
-      | _ when innerWidth < 768 => #mobile
-      | _ when innerWidth < 1024 => #tablet
+      | _ if innerWidth < 375 => #unsupported
+      | _ if innerWidth < 768 => #mobile
+      | _ if innerWidth < 1024 => #tablet
       | _ => #desktop
       }
   }

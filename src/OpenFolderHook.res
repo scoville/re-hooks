@@ -77,7 +77,7 @@ let use = () => {
     let input = ref.current->Js.Nullable.toOption->Belt.Option.flatMap(Element.asHtmlElement)
 
     switch input {
-    | Some(input) when !(input->HtmlElement.hasAttribute("disabled", _)) => input->HtmlElement.click
+    | Some(input) if !(input->HtmlElement.hasAttribute("disabled", _)) => input->HtmlElement.click
     | _ => ignore()
     }
   }
