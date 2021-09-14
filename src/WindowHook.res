@@ -17,10 +17,10 @@ let getWindow = () => {
 }
 
 @ocaml.doc("All-in-one window hook.
-Will return an object with some useful up-to-date data of the window object.
+Will return an object with some useful up-to-date data of the `window` object.
 
 The hook will always returns a `None` value on the backend, if your application works only
-on the frontend, you can safely get the data using `Option.getExn` or the safer `Option.getWithDefault`
+on the frontend, you can safely get the data using `Belt.Option.getExn` or the safer `Belt.Option.getWithDefault`
 function with an empty window object as default.
 
 Example:

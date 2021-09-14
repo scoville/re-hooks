@@ -36,10 +36,6 @@ let makeListeners = (~refs, ~onClick=true, ~onTouch=true, onClickOutside) => {
   {mouseDownListener: mouseDownListener, touchStartListener: touchStartListener}
 }
 
-@ocaml.doc("Calls the `onClickOutside` function if the user clicks on a dom element that is _not_ one whitelisted in the `refs` argument.
-
-You can deactivate any on click or on touch events using the `~onClick=false` or `~onTouch=false` arguments.
-")
 let use = (~refs, ~onClick=true, ~onTouch=true, onClickOutside) => {
   let {mouseDownListener, touchStartListener} = makeListeners(
     ~refs,
@@ -53,10 +49,6 @@ let use = (~refs, ~onClick=true, ~onTouch=true, onClickOutside) => {
   WindowListenersHook.TouchStart.use(touchStartListener)
 }
 
-@ocaml.doc("Calls the `onClickOutside` function if the user clicks on a dom element that is _not_ one whitelisted in the `refs` argument.
-
-You can deactivate any on click or on touch events using the `~onClick=false` or `~onTouch=false` arguments.
-")
 let use0 = (~refs, ~onClick=true, ~onTouch=true, onClickOutside) => {
   let {mouseDownListener, touchStartListener} = makeListeners(
     ~refs,
@@ -70,10 +62,6 @@ let use0 = (~refs, ~onClick=true, ~onTouch=true, onClickOutside) => {
   WindowListenersHook.TouchStart.use0(touchStartListener)
 }
 
-@ocaml.doc("Calls the `onClickOutside` function if the user clicks on a dom element that is _not_ one whitelisted in the `refs` argument.
-
-You can deactivate any on click or on touch events using the `~onClick=false` or `~onTouch=false` arguments.
-")
 let use1 = (~refs, ~onClick=true, ~onTouch=true, onClickOutside, dependencies) => {
   let {mouseDownListener, touchStartListener} = makeListeners(
     ~refs,
@@ -87,10 +75,6 @@ let use1 = (~refs, ~onClick=true, ~onTouch=true, onClickOutside, dependencies) =
   WindowListenersHook.TouchStart.use1(touchStartListener, dependencies)
 }
 
-@ocaml.doc("Calls the `onClickOutside` function if the user clicks on a dom element that is _not_ one whitelisted in the `refs` argument.
-
-You can deactivate any on click or on touch events using the `~onClick=false` or `~onTouch=false` arguments.
-")
 let use2 = (~refs, ~onClick=true, ~onTouch=true, onClickOutside, dependencies) => {
   let {mouseDownListener, touchStartListener} = makeListeners(
     ~refs,
@@ -104,10 +88,6 @@ let use2 = (~refs, ~onClick=true, ~onTouch=true, onClickOutside, dependencies) =
   WindowListenersHook.TouchStart.use2(touchStartListener, dependencies)
 }
 
-@ocaml.doc("Calls the `onClickOutside` function if the user clicks on a dom element that is _not_ one whitelisted in the `refs` argument.
-
-You can deactivate any on click or on touch events using the `~onClick=false` or `~onTouch=false` arguments.
-")
 let use3 = (~refs, ~onClick=true, ~onTouch=true, onClickOutside, dependencies) => {
   let {mouseDownListener, touchStartListener} = makeListeners(
     ~refs,
@@ -121,10 +101,6 @@ let use3 = (~refs, ~onClick=true, ~onTouch=true, onClickOutside, dependencies) =
   WindowListenersHook.TouchStart.use3(touchStartListener, dependencies)
 }
 
-@ocaml.doc("Calls the `onClickOutside` function if the user clicks on a dom element that is _not_ one whitelisted in the `refs` argument.
-
-You can deactivate any on click or on touch events using the `~onClick=false` or `~onTouch=false` arguments.
-")
 let use4 = (~refs, ~onClick=true, ~onTouch=true, onClickOutside, dependencies) => {
   let {mouseDownListener, touchStartListener} = makeListeners(
     ~refs,

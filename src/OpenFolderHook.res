@@ -51,11 +51,13 @@ Also, you should use `openFolder` only in events or in `React.useEffect` hooks.
 
 _This hook works only on the client side._
 
+Example:
+
 ```
 let {files, openFolder, openFolderProps} = OpenFolderHook.use()
 
 React.useEffect1(() => {
-  // Handle newly loaded files
+  // Handle loaded files
 }, [files])
 
 <div>
